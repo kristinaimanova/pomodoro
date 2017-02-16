@@ -1,7 +1,7 @@
 //data and variable declarations
 var timer;
-var minutesLeft = 25;
-var secondsLeft= 60;
+var minutesLeft = 0;
+var secondsLeft= 10;
 var isOnBreak = false;
 var numberOfBreaks = 0;
 //getting references the dom
@@ -11,13 +11,52 @@ var startButton = document.querySelector('#start');
 //initalization code
     //eventlisteners
     startButton.addEventListener('click', start);
+    render();
 //function definitions
 function start(){
+
     if(!timer){
     timer = setInterval(tick, 1000);
     }
 }
-function render(){}
+
 function tick(){
-    console.log('tick');
+    if (minutesLeft === 0 && secondsLeft === 0){
+        minutesLeft = 0;
+        secondsLeft = 0;
+    } else {
+        decrementSeconds();
+        decrementMinutes();
+    }
+    render();
+
+}
+function decrementMinutes(){
+    if(secondsLeft === 59) {
+        minutesLeft -= 1;
+    }
+
+}
+function decrementSeconds() {
+
+    if(secondsLeft === 0){
+        secondsLeft = 59;
+
+    }
+    else{
+        secondsLeft -=1;
+    }
+}
+function render(){
+    minutes.innerHTML = pad(minutesLeft);
+    seconds.innerHTML = pad(secondsLeft);
+}
+
+
+function pad(num){
+    if(num < 10){
+        return `0${num}`;
+    } else{
+        return num;
+    }
 }
