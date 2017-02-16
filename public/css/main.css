@@ -1,0 +1,12 @@
+span {
+
+    font-size: 10em;
+    font-family: monaco, helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+
+.container{
+    margin: auto;
+    text-align: center;
+}
