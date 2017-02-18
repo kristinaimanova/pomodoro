@@ -4,6 +4,7 @@ var minutesLeft = 0;
 var secondsLeft= 10;
 var isOnBreak = false;
 var numberOfBreaks = 0;
+var i=0;
 //getting references the dom
 var minutes = document.querySelector('#minutes');
 var seconds = document.querySelector('#seconds');
@@ -14,7 +15,6 @@ var startButton = document.querySelector('#start');
     render();
 //function definitions
 function start(){
-
     if(!timer){
     timer = setInterval(tick, 1000);
     }
@@ -22,8 +22,20 @@ function start(){
 
 function tick(){
     if (minutesLeft === 0 && secondsLeft === 0){
-        minutesLeft = 0;
-        secondsLeft = 0;
+        if(isOnBreak===false && i===3){
+            theRealBreak();
+
+        } else if(isOnBreak === false){
+            isOnBreak = true;
+            breakTimer();
+            console.log(i);
+        } else if(isOnBreak === true){
+            isOnBreak = false;
+            minutesLeft = 0;
+            secondsLeft = 2;
+            render();
+        }
+
     } else {
         decrementSeconds();
         decrementMinutes();
@@ -38,15 +50,14 @@ function decrementMinutes(){
 
 }
 function decrementSeconds() {
-
     if(secondsLeft === 0){
         secondsLeft = 59;
-
     }
     else{
         secondsLeft -=1;
     }
 }
+
 function render(){
     minutes.innerHTML = pad(minutesLeft);
     seconds.innerHTML = pad(secondsLeft);
@@ -59,4 +70,23 @@ function pad(num){
     } else{
         return num;
     }
+}
+
+function breakTimer(){
+        minutesLeft = 0;
+        secondsLeft = 2;
+        render();
+        i+=1;
+}
+
+function theRealBreak(){
+    minutesLeft = 0;
+    secondsLeft = 8;
+    render();
+    restart();
+}
+
+function restart(){
+    i = 0;
+    timer = false;
 }
