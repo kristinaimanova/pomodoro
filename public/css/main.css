@@ -1,3 +1,7 @@
+body {
+    background-image: url("../img/bell-pepper-33623_960_720.png");
+}
+
 span {
 
     font-size: 10em;
@@ -18,4 +22,8 @@ span {
 #stop{
     background-color: red;
     border: none;
+}
+
+#backgroundPic{
+    background-repeat: repeat;
 }
