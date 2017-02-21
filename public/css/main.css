@@ -10,3 +10,12 @@ span {
     margin: auto;
     text-align: center;
 }
+
+.realHidden{
+    display: none;
+}
+
+#stop{
+    background-color: red;
+    border: none;
+}
